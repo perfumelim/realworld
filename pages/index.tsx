@@ -1,4 +1,5 @@
 import type { NextPage, GetServerSideProps } from "next";
+import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -16,8 +17,12 @@ interface CardItemProps {
 const CardItem = ({ article }: CardItemProps) => {
   return (
     <li>
-      <h3>{article.title}</h3>
-      <p>{article.description}</p>
+      <Link href={"./articles/" + article.slug}>
+        <a>
+          <h3>{article.title}</h3>
+          <p>{article.description}</p>
+        </a>
+      </Link>
     </li>
   );
 };
@@ -39,6 +44,11 @@ const Home: NextPage<HomeProps> = ({ data }) => {
         <meta name="description" content="리얼월드의 넥스트 앱" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <nav>
+        <Link href="/auth/signup">
+          <a>Sign Up</a>
+        </Link>
+      </nav>
 
       <main className={styles.main}>
         <h1>conduit A place to share your knowledge.</h1>
